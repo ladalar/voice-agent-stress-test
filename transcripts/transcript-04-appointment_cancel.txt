@@ -1,0 +1,35 @@
+Call Transcript
+============================================================
+Scenario: Appointment Cancellation
+Call SID: CA_sample_04
+Start:    2025-01-15T15:22:10Z
+End:      2025-01-15T15:24:55Z
+============================================================
+
+[15:22:10] PATIENT: Hi, I'd like to cancel my appointment that's next Monday at 10am.
+
+[15:22:15] AGENT:   I can help with that. May I have your name and date of birth?
+
+[15:22:20] PATIENT: Robert Martinez, November 3, 1979.
+
+[15:22:26] AGENT:   Thank you, Mr. Martinez. I see your appointment is with Dr. Lee next Monday at 10 AM. Can I ask the reason for canceling?
+
+[15:22:34] PATIENT: It's a personal matter. I'd just like to cancel.
+
+[15:22:39] AGENT:   Of course, no problem. I've gone ahead and cancelled that appointment. Would you like to reschedule for a later date?
+
+[15:22:46] PATIENT: No thank you, I won't be rescheduling.
+
+[15:22:50] AGENT:   I understand. Is there anything else I can help you with today?
+
+[15:22:54] PATIENT: No, that's everything. Thank you.
+
+[15:22:57] AGENT:   You're welcome. Take care, Mr. Martinez. Goodbye.
+
+[15:23:00] PATIENT: Thank you, goodbye.
+
+============================================================
+Notes: Agent respected patient's privacy and didn't push for a reason after
+the first ask. Correctly didn't over-insist on rescheduling. Clean interaction.
+No issues observed.
+============================================================

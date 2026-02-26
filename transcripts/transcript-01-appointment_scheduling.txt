@@ -1,0 +1,39 @@
+Call Transcript
+============================================================
+Scenario: Simple Appointment Scheduling
+Call SID: CA_sample_01
+Start:    2025-01-15T14:02:11Z
+End:      2025-01-15T14:05:43Z
+============================================================
+
+[14:02:11] PATIENT: Hi, I'd like to schedule an appointment for a checkup please.
+
+[14:02:15] AGENT:   Thank you for calling. I'd be happy to help you schedule an appointment. Can I get your name and date of birth?
+
+[14:02:21] PATIENT: Sure, I'm Sarah Johnson, my date of birth is March 15, 1990.
+
+[14:02:28] AGENT:   Thank you, Sarah. Let me pull up your account. Do you have a preferred date or time for your checkup?
+
+[14:02:34] PATIENT: I'd like Tuesday or Wednesday afternoon next week if possible.
+
+[14:02:40] AGENT:   I have an opening on Wednesday the 22nd at 2:30 PM. Does that work for you?
+
+[14:02:46] PATIENT: Wednesday the 22nd at 2:30 works perfectly. What should I bring to the appointment?
+
+[14:02:54] AGENT:   Please bring a valid photo ID, your insurance card, and a list of any current medications you're taking. Arrive 15 minutes early to fill out some paperwork.
+
+[14:03:02] PATIENT: Great, I have Blue Cross Blue Shield. Will that be okay?
+
+[14:03:08] AGENT:   Yes, we do accept Blue Cross Blue Shield. You're all set for Wednesday the 22nd at 2:30 PM. Is there anything else I can help you with?
+
+[14:03:14] PATIENT: No, that's everything. Thank you so much!
+
+[14:03:17] AGENT:   You're welcome, Sarah. We'll see you on Wednesday. Have a great day!
+
+[14:03:20] PATIENT: Thank you, goodbye.
+
+============================================================
+Notes: Smooth, straightforward call. Agent correctly collected patient info,
+offered an available slot, and provided clear preparation instructions.
+No issues observed.
+============================================================

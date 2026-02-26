@@ -1,0 +1,43 @@
+Call Transcript
+============================================================
+Scenario: Unclear and Vague Request
+Call SID: CA_sample_08
+Start:    2025-01-15T16:48:02Z
+End:      2025-01-15T16:52:36Z
+============================================================
+
+[16:48:02] PATIENT: Hi, I'm not really sure what kind of appointment I need, but I've been having some back pain.
+
+[16:48:09] AGENT:   I'm sorry to hear that. Can you tell me more about the back pain — where is it located and how long have you had it?
+
+[16:48:17] PATIENT: It's my lower back, on the right side mostly. It's been going on for about two weeks. I don't know if it's serious enough to warrant a visit or if I need like an X-ray or something.
+
+[16:48:29] AGENT:   Two weeks of lower back pain is definitely worth having looked at. I'd suggest starting with a general consultation so the doctor can evaluate it and determine if imaging is needed. Does that sound right?
+
+[16:48:39] PATIENT: That makes sense. Also — I don't know if this is related — but I've been really stressed lately and not sleeping well at all.
+
+[16:48:48] AGENT:   That's important to mention too. Sleep issues and stress can actually contribute to back pain. You can discuss both with the doctor during your visit. Would you like to schedule that consultation?
+
+[16:48:58] PATIENT: Yes, please. I just wasn't sure if I was overreacting by calling.
+
+[16:49:04] AGENT:   Not at all — that's exactly what we're here for. Can I get your name and date of birth?
+
+[16:49:09] PATIENT: Lisa Garcia, December 5, 1991.
+
+[16:49:15] AGENT:   Thank you, Lisa. I have an opening on Thursday at 11 AM or Friday at 2 PM. Which works better for you?
+
+[16:49:22] PATIENT: Thursday at 11 works.
+
+[16:49:26] AGENT:   You're all set for Thursday at 11 AM. Bring a list of your symptoms and any medications you're currently taking. The doctor will take it from there.
+
+[16:49:35] PATIENT: That's so helpful, thank you. I feel better about this now.
+
+[16:49:39] AGENT:   Great. We'll see you Thursday. Take care!
+
+[16:49:43] PATIENT: Thank you, goodbye.
+
+============================================================
+Notes: Agent handled ambiguity very well — guided the patient toward the right
+appointment type, validated her concern, and picked up on the secondary symptom
+(sleep/stress). Good example of empathetic, clear guidance for an uncertain caller.
+============================================================

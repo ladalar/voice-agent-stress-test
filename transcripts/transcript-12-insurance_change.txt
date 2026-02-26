@@ -1,0 +1,55 @@
+Call Transcript
+============================================================
+Scenario: Insurance Change Notification
+Call SID: CA_sample_12
+Start:    2025-01-15T18:15:02Z
+End:      2025-01-15T18:19:38Z
+============================================================
+
+[18:15:02] PATIENT: Hi, I need to update my insurance information. My insurance recently changed.
+
+[18:15:08] AGENT:   I can help with that. Can I get your name and date of birth?
+
+[18:15:13] PATIENT: Carlos Rodriguez, May 23, 1987.
+
+[18:15:19] AGENT:   Thank you, Carlos. What insurance are you switching to?
+
+[18:15:23] PATIENT: Before I give you the details, do you accept Cigna insurance?
+
+[18:15:29] AGENT:   Yes, we do accept Cigna.
+
+[18:15:33] PATIENT: Great! My new Cigna member ID is CIG789012 and my group number is GRP456.
+
+[18:15:41] AGENT:   Got it. I've updated your insurance to Cigna with member ID CIG789012 and group number GRP456. Is there anything else?
+
+[18:15:50] PATIENT: Yes, actually — what was the old insurance I had on file? I just want to make sure it was the right one.
+
+[18:15:57] AGENT:   I show your previous insurance as United Healthcare. Does that sound right?
+
+[18:16:03] PATIENT: Yes, that's correct. Perfect. And just to confirm, is the Cigna update effective immediately?
+
+[18:16:10] AGENT:   Yes, the update is effective in our system immediately. If you have an upcoming appointment, please also bring your new Cigna insurance card.
+
+[18:16:19] PATIENT: Will do. One more thing — do I need to update this with the billing department separately, or does it automatically sync?
+
+[18:16:28] AGENT:   The update flows to all our departments including billing. You shouldn't need to call separately.
+
+[18:16:35] PATIENT: Excellent. That's really convenient. Thank you for making this so easy.
+
+[18:16:41] AGENT:   Happy to help. Is there anything else I can assist you with today?
+
+[18:16:46] PATIENT: No, that's everything. Thanks again.
+
+[18:16:50] AGENT:   You're welcome. Take care, Carlos. Goodbye!
+
+[18:16:53] PATIENT: Thank you, goodbye.
+
+============================================================
+BUG DETECTED — SEVERITY: MEDIUM
+The agent confirmed the insurance update without requesting the subscriber name
+or confirming the plan type (HMO/PPO). More importantly, the agent said
+"The update flows to all our departments including billing" — this may be
+an overpromise. If the billing system is not automatically synced, a patient
+could be billed under their old insurance. Should clarify whether billing
+sync is truly automatic or advise confirming with billing.
+============================================================
