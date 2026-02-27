@@ -1,30 +1,33 @@
 """
-Conversation manager: uses GPT-4 to generate realistic patient responses
-and maintains per-call conversation history.
+Conversation manager: uses Mistral 7B (via HuggingFace Inference API) to generate
+realistic patient responses and maintains per-call conversation history.
 """
 
 import os
 import json
 import logging
 from datetime import datetime, timezone
-from openai import OpenAI
+from huggingface_hub import InferenceClient
 
 logger = logging.getLogger(__name__)
 
 # In-memory store of active call sessions keyed by Twilio CallSid
 _sessions: dict[str, dict] = {}
 
-_openai_client: OpenAI | None = None
+_hf_client: InferenceClient | None = None
+
+# Mistral 7B model on HuggingFace Hub
+HF_MODEL = "mistralai/Mistral-7B-Instruct-v0.3"
 
 
-def _get_openai_client() -> OpenAI:
-    global _openai_client
-    if _openai_client is None:
-        _openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    return _openai_client
-
-# GPT-4 model to use for generating responses
-MODEL = "gpt-4o"
+def _get_hf_client() -> InferenceClient:
+    global _hf_client
+    if _hf_client is None:
+        _hf_client = InferenceClient(
+            model=HF_MODEL,
+            token=os.getenv("HF_API_TOKEN"),
+        )
+    return _hf_client
 
 # System-level meta-instructions added to every scenario
 META_INSTRUCTIONS = (
@@ -42,7 +45,7 @@ def start_session(call_sid: str, scenario: dict) -> None:
     """Initialize a new conversation session for the given call."""
     _sessions[call_sid] = {
         "scenario": scenario,
-        "messages": [],  # full OpenAI message history
+        "messages": [],  # full HuggingFace message history
         "transcript": [],  # human-readable log [{role, text, timestamp}]
         "start_time": datetime.now(timezone.utc).isoformat(),
         "end_time": None,
@@ -62,8 +65,9 @@ def get_initial_message(call_sid: str) -> str:
 
 def generate_response(call_sid: str, agent_text: str) -> str:
     """
-    Given what the agent just said, generate the patient's next response using GPT-4.
-    Returns the response text. Returns empty string if the session is unknown.
+    Given what the agent just said, generate the patient's next response using
+    Mistral 7B via the HuggingFace Inference API.
+    Returns the response text. Returns a fallback if the session is unknown.
     """
     session = _sessions.get(call_sid)
     if not session:
@@ -76,7 +80,7 @@ def generate_response(call_sid: str, agent_text: str) -> str:
     # Build system prompt
     system_prompt = session["scenario"]["system_prompt"] + META_INSTRUCTIONS
 
-    # Build message list for OpenAI
+    # Build message list for HuggingFace / Mistral chat format
     messages = [{"role": "system", "content": system_prompt}]
 
     # Add conversation history (agent = assistant, patient = user)
@@ -86,18 +90,17 @@ def generate_response(call_sid: str, agent_text: str) -> str:
         else:
             messages.append({"role": "user", "content": turn["text"]})
 
-    # The last message should be the agent's most recent line → ask GPT for patient reply
+    # The last message should be the agent's most recent line → ask Mistral for patient reply
     # (transcript already has agent turn recorded above so last entry is agent)
     try:
-        completion = _get_openai_client().chat.completions.create(
-            model=MODEL,
+        completion = _get_hf_client().chat_completion(
             messages=messages,
             max_tokens=150,
             temperature=0.7,
         )
         response_text = completion.choices[0].message.content.strip()
     except Exception as exc:
-        logger.error("OpenAI error for session %s: %s", call_sid, exc)
+        logger.error("HuggingFace error for session %s: %s", call_sid, exc)
         response_text = "I'm sorry, could you repeat that?"
 
     # Record patient turn

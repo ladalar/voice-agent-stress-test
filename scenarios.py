@@ -2,7 +2,7 @@
 Patient scenarios for the voice bot stress test.
 
 Each scenario defines a patient persona, their goal, and how to behave
-during the call. The system_prompt guides GPT-4 to roleplay as a realistic
+during the call. The system_prompt guides Mistral 7B to roleplay as a realistic
 patient caller.
 """
 

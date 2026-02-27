@@ -5,7 +5,7 @@ Flow per call:
 1. Twilio dials the target number and POSTs to /voice when it connects.
 2. /voice returns TwiML that plays the patient's opening line, then
    listens for the agent's response via <Gather>.
-3. Each agent utterance is sent to /respond, which uses GPT-4 to generate
+3. Each agent utterance is sent to /respond, which uses Mistral 7B to generate
    the next patient line and loops back to <Gather>.
 4. When the patient decides to end the call (GPT says goodbye), we hang up.
 5. On status callbacks (/status) we save the transcript to disk.
@@ -80,7 +80,7 @@ def voice():
 def respond():
     """
     Called by Twilio after <Gather> captures the agent's speech.
-    Generates the next patient response via GPT-4 and loops.
+    Generates the next patient response via Mistral 7B and loops.
     """
     call_sid = request.form.get("CallSid", "unknown")
     agent_speech = request.form.get("SpeechResult", "").strip()
