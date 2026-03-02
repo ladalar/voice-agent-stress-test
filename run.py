@@ -34,6 +34,7 @@ from scenarios import SCENARIOS, SCENARIO_MAP
 
 load_dotenv()
 
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s – %(message)s",
@@ -46,7 +47,7 @@ def make_call(scenario_id: str) -> str | None:
     account_sid = os.getenv("TWILIO_ACCOUNT_SID")
     auth_token = os.getenv("TWILIO_AUTH_TOKEN")
     from_number = os.getenv("TWILIO_PHONE_NUMBER")
-    to_number = os.getenv("TARGET_PHONE_NUMBER", "+18054398008")
+    to_number = os.getenv("TARGET_PHONE_NUMBER")
     webhook_base = os.getenv("WEBHOOK_BASE_URL", "").rstrip("/")
 
     if not all([account_sid, auth_token, from_number, webhook_base]):
@@ -140,7 +141,7 @@ def main() -> None:
         sid = make_call(scenario_id)
         if sid:
             call_sids.append({"scenario": scenario_id, "sid": sid})
-
+    
     print(f"\n{'=' * 60}")
     print(f"Initiated {len(call_sids)} / {len(scenarios_to_run)} calls.")
     for entry in call_sids:
