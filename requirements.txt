@@ -1,0 +1,5 @@
+flask==3.0.3
+twilio==9.3.3
+huggingface-hub==0.24.7
+python-dotenv==1.0.1
+requests==2.32.3
